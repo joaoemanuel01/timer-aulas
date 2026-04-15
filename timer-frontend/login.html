@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Pro — Login</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Exo+2:wght@300;400;600;700&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="bg-wrap">
+        <div class="bg-particles" id="particles"></div>
+    </div>
+
+    <div class="screens">
+
+        <!-- TELA 1 — SIGN IN -->
+        <div class="card active" id="screenSignIn">
+            <img src="logo.png" alt="Timer Pro" class="logo-img">
+            <div class="card-title">Timer Pro</div>
+            <div class="card-subtitle">Faça login para acessar suas configurações</div>
+            <div class="divider"></div>
+
+            <div class="field">
+                <label>E-mail</label>
+                <input type="email" id="siEmail" placeholder="seu@email.com">
+            </div>
+
+            <div class="field">
+                <label>Senha</label>
+                <div class="field-pw">
+                    <input type="password" id="siPassword" placeholder="••••••••">
+                    <button class="toggle-pw" onclick="togglePw('siPassword', this)">👁</button>
+                </div>
+            </div>
+
+            <p class="error-msg" id="siError"></p>
+
+            <button class="btn-primary" onclick="handleSignIn()">▶ ENTRAR</button>
+            <button class="btn-secondary" onclick="goTo('screenRegister')">✦ Criar conta</button>
+            <div class="divider"></div>
+            <button class="btn-ghost" onclick="handleGuest()">Usar sem cadastro</button>
+        </div>
+
+        <!-- TELA 2 — CADASTRO -->
+        <div class="card" id="screenRegister">
+            <div class="card-title">Criar Conta</div>
+
+            <div class="field">
+                <label>Nome</label>
+                <input type="text" id="regName" placeholder="Seu nome completo">
+            </div>
+
+            <div class="field">
+                <label>E-mail</label>
+                <input type="email" id="regEmail" placeholder="seu@email.com">
+            </div>
+
+            <div class="field">
+                <label>Senha</label>
+                <div class="field-pw">
+                    <input type="password" id="regPassword" placeholder="••••••••" oninput="checkPwRules(this.value)">
+                    <button class="toggle-pw" onclick="togglePw('regPassword', this)">👁</button>
+                </div>
+            </div>
+
+            <div class="pw-rules">
+                <div class="pw-rule" id="rule-len">Mínimo 8 caracteres</div>
+                <div class="pw-rule" id="rule-upper">Uma letra maiúscula (A-Z)</div>
+                <div class="pw-rule" id="rule-lower">Uma letra minúscula (a-z)</div>
+                <div class="pw-rule" id="rule-num">Um número (0-9)</div>
+            </div>
+
+            <div class="field">
+                <label>Confirmar Senha</label>
+                <div class="field-pw">
+                    <input type="password" id="regConfirm" placeholder="••••••••">
+                    <button class="toggle-pw" onclick="togglePw('regConfirm', this)">👁</button>
+                </div>
+            </div>
+
+            <p class="error-msg" id="regError"></p>
+
+            <button class="btn-primary" onclick="handleRegister()">✔ CADASTRAR</button>
+            <button class="link-btn" onclick="goTo('screenSignIn')">← Voltar para o login</button>
+        </div>
+
+        <!-- TELA 3 — PREFERÊNCIAS -->
+        <div class="card" id="screenPrefs">
+            <div class="card-title">Como você quer usar?</div>
+            <div class="card-subtitle">Escolha o modo da aba "Início da Aula"</div>
+            <div class="divider"></div>
+
+            <div class="pref-options">
+                <div class="pref-card" id="prefCron" onclick="selectPref('cronometro')">
+                    <div class="pref-card-title">⏱ Com Cronômetro</div>
+                    <div class="pref-card-desc">A aba "Início da Aula" exibe as imagens padrão do sistema em slideshow,
+                        sem cronômetro visível.</div>
+                </div>
+                <div class="pref-card" id="prefCustom" onclick="selectPref('personalizado')">
+                    <div class="pref-card-title">🖼 Fundo Personalizado</div>
+                    <div class="pref-card-desc">Você envia uma imagem própria que fica como fundo estático, sem
+                        cronômetro.</div>
+                </div>
+            </div>
+
+            <div class="upload-area" id="uploadArea" onclick="document.getElementById('uploadInput').click()">
+                <input type="file" id="uploadInput" accept="image/*,.gif" onchange="previewImage(event)">
+                <div class="upload-icon">🖼</div>
+                <div class="upload-label">Clique para escolher</div>
+                <div class="upload-hint">PNG, JPG ou GIF · máx. 10MB</div>
+                <img id="uploadPreview" class="upload-preview" alt="Prévia da imagem">
+            </div>
+
+            <p class="error-msg" id="prefError"></p>
+
+            <button class="btn-primary" onclick="handleSavePrefs()">✔ SALVAR E ENTRAR</button>
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

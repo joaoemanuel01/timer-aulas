@@ -1,0 +1,691 @@
+:root {
+    --bg-dark: #0a0e1a;
+    --panel: #111827;
+    --panel-light: #1a2235;
+    --border: rgba(255, 255, 255, 0.07);
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --danger: #ef4444;
+    --success: #10b981;
+    --nav-h: 64px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ── NAVBAR ── */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-h);
+    background: rgba(10, 14, 26, 0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+}
+
+.nav-brand {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.nav-brand span {
+    color: var(--text-muted);
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.tab-btn {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border);
+}
+
+.tab-btn.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.12), inset 0 0 8px rgba(0, 212, 255, 0.05);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    border-radius: 2px;
+}
+
+/* ── SCENE ── */
+.scene {
+    position: fixed;
+    inset: 0;
+    top: var(--nav-h);
+}
+
+.scene-bg {
+    position: absolute;
+    inset: 0;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.8s ease, opacity 0.6s ease;
+}
+
+/* Placeholder backgrounds with gradients when images are missing */
+.bg-aula {
+    background-image: url('aula.gif');
+}
+
+.bg-atividade {
+    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+}
+
+.bg-intervalo {
+    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+}
+
+.bg-almoco {
+    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+}
+
+.scene-overlay {
+    display: none;
+}
+
+/* ── TIMER PANEL ── */
+.timer-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 5%;
+    gap: 32px;
+    transition: opacity 0.4s ease;
+}
+
+.timer-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Config card */
+.config-card {
+    background: rgba(10, 14, 26, 0.78);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 420px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 212, 255, 0.06);
+}
+
+.config-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Mode toggle */
+.mode-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+    width: 100%;
+}
+
+.mode-btn {
+    flex: 1;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
+}
+
+/* Time inputs */
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.time-input-group {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 6px;
+}
+
+.time-input-group label {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.time-input-group select {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5rem;
+    color: #111;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px 10px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.time-input-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
+}
+
+.time-sep {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8rem;
+    color: var(--text-muted);
+    padding-bottom: 14px;
+}
+
+/* Start button */
+.start-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 48px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+    width: 100%;
+}
+
+.start-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+}
+
+.start-btn:hover::before {
+    opacity: 1;
+}
+
+.start-btn:active {
+    transform: translateY(0);
+}
+
+.start-btn.running {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35);
+}
+
+/* ── CLOCK DISPLAY ── */
+.clock-display {
+    position: relative;
+    text-align: left;
+}
+
+.clock-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-top: 20px;
+    text-align: center;
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000,
+        0 1px 0 #000, 0 -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000,
+        0 2px 0 #000, 0 -2px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000,
+        2px -2px 0 #000, -2px -2px 0 #000;
+}
+
+.clock-ring {
+    position: relative;
+    display: inline-block;
+}
+
+.clock-digits {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: 4px;
+    text-shadow:
+        1px 0 0 #000,
+        -1px 0 0 #000,
+        0 1px 0 #000,
+        0 -1px 0 #000,
+        2px 0 0 #000,
+        -2px 0 0 #000,
+        0 2px 0 #000,
+        0 -2px 0 #000,
+        3px 0 0 #000,
+        -3px 0 0 #000,
+        0 3px 0 #000,
+        0 -3px 0 #000,
+        2px 2px 0 #000,
+        -2px 2px 0 #000,
+        2px -2px 0 #000,
+        -2px -2px 0 #000,
+        3px 1px 0 #000,
+        -3px 1px 0 #000,
+        1px 3px 0 #000,
+        -1px 3px 0 #000,
+        3px -1px 0 #000,
+        -3px -1px 0 #000,
+        1px -3px 0 #000,
+        -1px -3px 0 #000;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    image-rendering: pixelated;
+}
+
+.clock-digits.alarm-flash {
+    animation: flashRed 0.5s ease-in-out infinite;
+}
+
+@keyframes flashRed {
+
+    0%,
+    100% {
+        color: #fff;
+        text-shadow: 0 0 40px rgba(239, 68, 68, 0.8), 0 0 80px rgba(239, 68, 68, 0.4);
+    }
+
+    50% {
+        color: var(--danger);
+        text-shadow: 0 0 60px rgba(239, 68, 68, 1), 0 0 120px rgba(239, 68, 68, 0.6);
+    }
+}
+
+/* Grid lines on BG */
+.scene::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.scene-bg,
+.scene-overlay,
+.timer-panel {
+    z-index: 2;
+}
+
+/* ── AULA MODE ── */
+.aula-badge {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 24px;
+    border-radius: 40px;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* ── HAMBURGER ── */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    background: transparent;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .nav-tabs {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: rgba(10, 14, 26, 0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        gap: 4px;
+        z-index: 99;
+    }
+
+    .nav-tabs.open {
+        display: flex;
+    }
+
+    .tab-btn {
+        text-align: center;
+    }
+
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .config-card {
+        min-width: unset;
+        width: calc(100vw - 32px);
+        padding: 20px 16px;
+    }
+
+    .time-inputs {
+        gap: 4px;
+    }
+
+    .time-input-group select {
+        width: 64px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .time-input-group select {
+        width: 54px;
+        font-size: 1rem;
+        padding: 6px 6px;
+    }
+}
+
+/* Pulse glow on end */
+.scene-bg.pulse-on-end {
+    animation: pulseRed 0.8s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.1) saturate(1.2) hue-rotate(-10deg);
+    }
+}
+
+/* Finish overlay */
+.finish-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+}
+
+.finish-overlay.active {
+    opacity: 1;
+}
+
+/* ── BOTÃO CHAMADA ── */
+.chamada-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    display: none;
+    margin-top: 12px;
+}
+
+.chamada-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.55);
+}
+
+.chamada-btn:active {
+    transform: translateY(0);
+}
+
+.chamada-btn.visible {
+    display: block;
+}
+
+/* ── CHAMADA LIBERADA OVERLAY ── */
+.chamada-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.chamada-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.chamada-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 24px;
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000,
+        0 1px 0 #000, 0 -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000,
+        0 2px 0 #000, 0 -2px 0 #000,
+        3px 0 0 #000, -3px 0 0 #000,
+        0 3px 0 #000, 0 -3px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000,
+        2px -2px 0 #000, -2px -2px 0 #000,
+        3px 1px 0 #000, -3px 1px 0 #000,
+        1px 3px 0 #000, -1px 3px 0 #000,
+        3px -1px 0 #000, -3px -1px 0 #000,
+        1px -3px 0 #000, -1px -3px 0 #000;
+    animation: chamadaPulse 2s ease-in-out infinite;
+}
+
+@keyframes chamadaPulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 40px rgba(245, 158, 11, 0.9), 0 0 80px rgba(245, 158, 11, 0.5), 0 4px 24px rgba(0, 0, 0, 0.9);
+    }
+
+    50% {
+        text-shadow: 0 0 70px rgba(245, 158, 11, 1), 0 0 140px rgba(245, 158, 11, 0.7), 0 4px 24px rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Timer pequeno dentro do overlay de chamada */
+.chamada-mini-timer {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    color: #fff;
+    margin-top: 40px;
+    letter-spacing: 3px;
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000,
+        0 1px 0 #000, 0 -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000,
+        0 2px 0 #000, 0 -2px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000,
+        2px -2px 0 #000, -2px -2px 0 #000;
+}
+
+.chamada-fechar {
+    margin-top: 32px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    padding: 10px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chamada-fechar:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.voltar-btn {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 100, 100, 0.8);
+    border: 2px solid rgba(255, 100, 100, 0.8);
+    background: transparent;
+    padding: 10px  28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+}
+
+.voltar-btn:hover{
+    color:#ff6464;
+    border-color: rgba(255, 100, 100, 0.8);
+}
