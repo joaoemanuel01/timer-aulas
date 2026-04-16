@@ -212,7 +212,7 @@ async function handleSavePrefs() {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const res  = await fetch(`${API_URL}/api/user/upload-aula-image`, {
+      const res  = await fetch(`${API_URL}/user/upload-aula-image`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
