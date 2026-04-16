@@ -1,7 +1,5 @@
-// ═══════════════════════════════════════
-//  CONFIG API — troque pela URL do Railway após o deploy
-// ═══════════════════════════════════════
-const API_URL = 'https://seu-backend.up.railway.app';
+
+const API_URL = 'timer-aulas-production.up.railway.app';
 
 // ═══════════════════════════════════════
 //  INIT — se já logado, vai direto pro app
