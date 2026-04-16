@@ -1,5 +1,5 @@
 
-const API_URL = 'https://timer-aulas-production.up.railway.app/api/auth/login';
+const API_URL = 'https://timer-aulas-production.up.railway.app/api';
 
 // ═══════════════════════════════════════
 //  INIT — se já logado, vai direto pro app
@@ -90,7 +90,7 @@ async function handleSignIn() {
   }
 
   try {
-    const res  = await fetch(`${API_URL}/api/auth/login`, {
+    const res  = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -135,7 +135,7 @@ async function handleRegister() {
   document.getElementById('regConfirm').classList.remove('error');
 
   try {
-    const res  = await fetch(`${API_URL}/api/auth/register`, {
+    const res  = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
