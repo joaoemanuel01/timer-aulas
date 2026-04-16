@@ -1,5 +1,5 @@
 
-const API_URL = 'timer-aulas-production.up.railway.app';
+const API_URL = 'https://timer-aulas-production.up.railway.app/api/auth/login';
 
 // ═══════════════════════════════════════
 //  INIT — se já logado, vai direto pro app
