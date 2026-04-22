@@ -1,14 +1,19 @@
 
+// ═══════════════════════════════════════
+//  CONFIG API — troque pela URL do Railway após o deploy
+// ═══════════════════════════════════════
 const API_URL = 'https://timer-aulas-production.up.railway.app/api';
 
+// ═══════════════════════════════════════
 //  INIT — se já logado, vai direto pro app
+// ═══════════════════════════════════════
 if (localStorage.getItem('token') || localStorage.getItem('guest')) {
   window.location.href = 'index.html';
-
 }
 
-
+// ═══════════════════════════════════════
 //  PARTÍCULAS DE FUNDO
+// ═══════════════════════════════════════
 (function spawnParticles() {
   const container = document.getElementById('particles');
   for (let i = 0; i < 30; i++) {
@@ -25,8 +30,9 @@ if (localStorage.getItem('token') || localStorage.getItem('guest')) {
   }
 })();
 
-
+// ═══════════════════════════════════════
 //  NAVEGAÇÃO ENTRE TELAS
+// ═══════════════════════════════════════
 function goTo(screenId) {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
@@ -37,7 +43,9 @@ function clearErrors() {
   document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
 }
 
+// ═══════════════════════════════════════
 //  MOSTRAR/OCULTAR SENHA
+// ═══════════════════════════════════════
 function togglePw(inputId, btn) {
   const input = document.getElementById(inputId);
   if (input.type === 'password') {
@@ -49,7 +57,9 @@ function togglePw(inputId, btn) {
   }
 }
 
+// ═══════════════════════════════════════
 //  VALIDAÇÃO DE SENHA
+// ═══════════════════════════════════════
 const PW_RULES = {
   'rule-len':   v => v.length >= 8,
   'rule-upper': v => /[A-Z]/.test(v),
@@ -67,7 +77,9 @@ function isPasswordValid(value) {
   return Object.values(PW_RULES).every(fn => fn(value));
 }
 
+// ═══════════════════════════════════════
 //  SIGN IN
+// ═══════════════════════════════════════
 async function handleSignIn() {
   const email    = document.getElementById('siEmail').value.trim();
   const password = document.getElementById('siPassword').value;
@@ -79,7 +91,7 @@ async function handleSignIn() {
   }
 
   try {
-    const res  = await fetch(`${API_URL}/auth/login`, {
+    const res  = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -95,7 +107,9 @@ async function handleSignIn() {
   }
 }
 
+// ═══════════════════════════════════════
 //  CADASTRO
+// ═══════════════════════════════════════
 async function handleRegister() {
   const name     = document.getElementById('regName').value.trim();
   const email    = document.getElementById('regEmail').value.trim();
@@ -122,7 +136,7 @@ async function handleRegister() {
   document.getElementById('regConfirm').classList.remove('error');
 
   try {
-    const res  = await fetch(`${API_URL}/auth/register`, {
+    const res  = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
@@ -138,14 +152,18 @@ async function handleRegister() {
   }
 }
 
+// ═══════════════════════════════════════
 //  USAR SEM CADASTRO
+// ═══════════════════════════════════════
 function handleGuest() {
   localStorage.clear();
   localStorage.setItem('guest', 'true');
   window.location.href = 'index.html';
 }
 
+// ═══════════════════════════════════════
 //  PREFERÊNCIAS (pós-cadastro)
+// ═══════════════════════════════════════
 let selectedPref = null;
 let selectedFile = null;
 
@@ -195,7 +213,7 @@ async function handleSavePrefs() {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const res  = await fetch(`${API_URL}/user/upload-aula-image`, {
+      const res  = await fetch(`${API_URL}/api/user/upload-aula-image`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -213,7 +231,9 @@ async function handleSavePrefs() {
   window.location.href = 'index.html';
 }
 
+// ═══════════════════════════════════════
 //  SESSÃO
+// ═══════════════════════════════════════
 function saveSession(data) {
   localStorage.setItem('token',        data.token);
   localStorage.setItem('userName',     data.name);
