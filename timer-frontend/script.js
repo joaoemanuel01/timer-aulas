@@ -84,30 +84,23 @@ function setMode(mode) {
     b.classList.toggle('active', b.dataset.mode === mode)
   );
 
-  // background
-  const bg = document.getElementById('sceneBg');
-  bg.classList.remove('pulse-on-end');
-  bg.style.backgroundImage = '';
-
-  if (mode === 'aula') {
-    stopSlideshow();
-    bg.className = 'scene-bg bg-aula';
-  } else {
-    bg.className = 'scene-bg';
-    startSlideshow();
-  }
-
-  // finish overlay
-  document.getElementById('finishOverlay').classList.remove('active');
-
-  // panel visibility
+  // background e panel
+  const bg    = document.getElementById('sceneBg');
   const panel = document.getElementById('timerPanel');
   const badge = document.getElementById('aulaBadge');
 
+  bg.classList.remove('pulse-on-end');
+  bg.style.backgroundImage = '';
+  document.getElementById('finishOverlay').classList.remove('active');
+
   if (mode === 'aula') {
-    panel.classList.add('hidden');
-    badge.style.display = 'block';
+    // Delega toda a lógica da aba aula ao auth.js
+    applyAulaMode();
   } else {
+    // Outras abas: sempre slideshow + cronômetro visível
+    stopSlideshow();
+    bg.className = 'scene-bg';
+    startSlideshow();
     panel.classList.remove('hidden');
     badge.style.display = 'none';
   }
