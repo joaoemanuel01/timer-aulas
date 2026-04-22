@@ -50,7 +50,6 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // Adicione explicitamente a URL da Vercel aqui para não ter erro
         config.setAllowedOrigins(List.of(
                 frontendUrl,
                 "https://timerpro-joaoemanuel.vercel.app",
