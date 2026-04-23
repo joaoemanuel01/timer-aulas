@@ -18,59 +18,6 @@
 
 <body>
 
-    <!-- ══ TELA DE LOGIN / CADASTRO ══ -->
-    <div id="loginScreen">
-
-        <!-- Background pixel art animado -->
-        <div class="login-bg"></div>
-
-        <!-- Card central -->
-        <div class="login-card">
-
-            <!-- Logo -->
-            <img src="logo.png" alt="Timer Pro" class="login-logo">
-
-            <!-- Abas Login / Cadastro -->
-            <div class="login-tabs">
-                <button class="login-tab active" id="tabLoginBtn" onclick="switchTab('login')">Entrar</button>
-                <button class="login-tab" id="tabRegisterBtn" onclick="switchTab('register')">Cadastrar</button>
-            </div>
-
-            <!-- ── Formulário Login ── -->
-            <div id="formLogin" class="login-form">
-                <div class="login-input-group">
-                    <label>E-mail</label>
-                    <input type="email" id="loginEmail" placeholder="seu@email.com">
-                </div>
-                <div class="login-input-group">
-                    <label>Senha</label>
-                    <input type="password" id="loginPassword" placeholder="••••••">
-                </div>
-                <p class="login-error" id="loginError"></p>
-                <button class="login-btn" onclick="handleLogin()">▶ ENTRAR</button>
-                <button class="login-btn-ghost" onclick="entrarSemLogin()">Continuar sem login</button>
-            </div>
-
-            <!-- ── Formulário Cadastro ── -->
-            <div id="formRegister" class="login-form" style="display:none">
-                <div class="login-input-group">
-                    <label>Nome</label>
-                    <input type="text" id="registerName" placeholder="Seu nome">
-                </div>
-                <div class="login-input-group">
-                    <label>E-mail</label>
-                    <input type="email" id="registerEmail" placeholder="seu@email.com">
-                </div>
-                <div class="login-input-group">
-                    <label>Senha</label>
-                    <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres">
-                </div>
-                <p class="login-error" id="registerError"></p>
-                <button class="login-btn" onclick="handleRegister()">✔ CADASTRAR</button>
-            </div>
-
-        </div>
-    </div>
 
     <!-- ══ APP (visível após login) ══ -->
     <div id="appScreen" style="display:none">
