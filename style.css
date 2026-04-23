@@ -123,22 +123,20 @@ nav {
     transition: background-image 0.8s ease, opacity 0.6s ease;
 }
 
-/* Placeholder backgrounds with gradients when images are missing */
 .bg-aula {
-    background-image: none;
-    background-color: #0a0e1a;
+    background-image: url('aula.gif');
 }
 
 .bg-atividade {
-    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+    background-image: url('atividade.png');
 }
 
 .bg-intervalo {
-    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+    background-image: url('intervalo.png');
 }
 
 .bg-almoco {
-    background-image: url('https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg');
+    background-image: url('almoco.png');
 }
 
 .scene-overlay {
@@ -322,24 +320,6 @@ nav {
     text-align: left;
 }
 
-.clock-label {
-    font-family: 'Press Start 2P', monospace;
-    font-size: clamp(0.7rem, 1.5vw, 1.1rem);
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #ffffff;
-    margin-top: 20px;
-    text-align: center;
-    text-shadow:
-        1px 0 0 #000, -1px 0 0 #000,
-        0 1px 0 #000, 0 -1px 0 #000,
-        2px 0 0 #000, -2px 0 0 #000,
-        0 2px 0 #000, 0 -2px 0 #000,
-        2px 2px 0 #000, -2px 2px 0 #000,
-        2px -2px 0 #000, -2px -2px 0 #000;
-}
-
 .clock-ring {
     position: relative;
     display: inline-block;
@@ -353,30 +333,18 @@ nav {
     line-height: 1;
     letter-spacing: 4px;
     text-shadow:
-        1px 0 0 #000,
-        -1px 0 0 #000,
-        0 1px 0 #000,
-        0 -1px 0 #000,
-        2px 0 0 #000,
-        -2px 0 0 #000,
-        0 2px 0 #000,
-        0 -2px 0 #000,
-        3px 0 0 #000,
-        -3px 0 0 #000,
-        0 3px 0 #000,
-        0 -3px 0 #000,
-        2px 2px 0 #000,
-        -2px 2px 0 #000,
-        2px -2px 0 #000,
-        -2px -2px 0 #000,
-        3px 1px 0 #000,
-        -3px 1px 0 #000,
-        1px 3px 0 #000,
-        -1px 3px 0 #000,
-        3px -1px 0 #000,
-        -3px -1px 0 #000,
-        1px -3px 0 #000,
-        -1px -3px 0 #000;
+        1px 0 0 #000, -1px 0 0 #000,
+        0 1px 0 #000, 0 -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000,
+        0 2px 0 #000, 0 -2px 0 #000,
+        3px 0 0 #000, -3px 0 0 #000,
+        0 3px 0 #000, 0 -3px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000,
+        2px -2px 0 #000, -2px -2px 0 #000,
+        3px 1px 0 #000, -3px 1px 0 #000,
+        1px 3px 0 #000, -1px 3px 0 #000,
+        3px -1px 0 #000, -3px -1px 0 #000,
+        1px -3px 0 #000, -1px -3px 0 #000;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     image-rendering: pixelated;
 }
@@ -399,7 +367,25 @@ nav {
     }
 }
 
-/* Grid lines on BG */
+.clock-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(1rem, 2.2vw, 1.6rem);
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-top: 20px;
+    text-align: center;
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000,
+        0 1px 0 #000, 0 -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000,
+        0 2px 0 #000, 0 -2px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000,
+        2px -2px 0 #000, -2px -2px 0 #000;
+}
+
+/* Grid lines */
 .scene::before {
     content: '';
     position: absolute;
@@ -418,7 +404,7 @@ nav {
     z-index: 2;
 }
 
-/* ── AULA MODE ── */
+/* ── AULA BADGE ── */
 .aula-badge {
     position: absolute;
     bottom: 40px;
@@ -434,6 +420,7 @@ nav {
     border-radius: 40px;
     backdrop-filter: blur(8px);
     background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 /* ── HAMBURGER ── */
@@ -456,88 +443,30 @@ nav {
     transition: all 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 700px) {
-    .nav-tabs {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: var(--nav-h);
-        left: 0;
-        right: 0;
-        background: rgba(10, 14, 26, 0.97);
-        border-bottom: 1px solid var(--border);
-        padding: 12px;
-        gap: 4px;
-        z-index: 99;
-    }
-
-    .nav-tabs.open {
-        display: flex;
-    }
-
-    .tab-btn {
-        text-align: center;
-    }
-
-    .nav-hamburger {
-        display: flex;
-    }
-
-    .config-card {
-        min-width: unset;
-        width: calc(100vw - 32px);
-        padding: 20px 16px;
-    }
-
-    .time-inputs {
-        gap: 4px;
-    }
-
-    .time-input-group select {
-        width: 64px;
-        font-size: 1.2rem;
-    }
+/* ── BOTÃO VOLTAR ── */
+.voltar-btn {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border: 1px solid rgba(255, 100, 100, 0.4);
+    border-radius: 40px;
+    cursor: pointer;
+    background: transparent;
+    color: rgba(255, 100, 100, 0.8);
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    transition: all 0.2s ease;
+    display: none;
 }
 
-@media (max-width: 400px) {
-    .time-input-group select {
-        width: 54px;
-        font-size: 1rem;
-        padding: 6px 6px;
-    }
-}
-
-/* Pulse glow on end */
-.scene-bg.pulse-on-end {
-    animation: pulseRed 0.8s ease-in-out infinite;
-}
-
-@keyframes pulseRed {
-
-    0%,
-    100% {
-        filter: brightness(1);
-    }
-
-    50% {
-        filter: brightness(1.1) saturate(1.2) hue-rotate(-10deg);
-    }
-}
-
-/* Finish overlay */
-.finish-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 3;
-}
-
-.finish-overlay.active {
-    opacity: 1;
+.voltar-btn:hover {
+    color: #ff6464;
+    border-color: rgba(255, 100, 100, 0.8);
 }
 
 /* ── BOTÃO CHAMADA ── */
@@ -631,7 +560,6 @@ nav {
     }
 }
 
-/* Timer pequeno dentro do overlay de chamada */
 .chamada-mini-timer {
     font-family: 'Press Start 2P', monospace;
     font-size: clamp(1rem, 2.5vw, 1.8rem);
@@ -667,231 +595,91 @@ nav {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* ══════════════════════════════════════
-   LOGIN SCREEN
-══════════════════════════════════════ */
-#loginScreen {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    background: var(--bg-dark);
+/* Pulse glow on end */
+.scene-bg.pulse-on-end {
+    animation: pulseRed 0.8s ease-in-out infinite;
 }
 
-.login-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('aula.gif');
-    background-size: 100% 100%;
-    background-position: center;
-    filter: brightness(0.35);
-    z-index: 0;
-}
+@keyframes pulseRed {
 
-.login-card {
-    position: relative;
-    z-index: 1;
-    background: rgba(10, 14, 26, 0.92);
-    backdrop-filter: blur(24px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 20px;
-    padding: 36px 40px;
-    width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 212, 255, 0.08);
-}
-
-.login-logo {
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
-    border-radius: 16px;
-}
-
-/* Abas login/cadastro */
-.login-tabs {
-    display: flex;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 3px;
-    gap: 3px;
-    width: 100%;
-}
-
-.login-tab {
-    flex: 1;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 1px;
-    padding: 10px 8px;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.login-tab.active {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-    color: var(--accent);
-    box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
-}
-
-/* Formulário */
-.login-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.login-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.login-input-group label {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.5rem;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-}
-
-.login-input-group input {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.95rem;
-    color: #111;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 8px;
-    padding: 10px 14px;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    width: 100%;
-}
-
-.login-input-group input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
-}
-
-/* Botão principal */
-.login-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    width: 100%;
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
-    margin-top: 4px;
-}
-
-.login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
-}
-
-/* Botão "continuar sem login" */
-.login-btn-ghost {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    cursor: pointer;
-    background: transparent;
-    color: var(--text-muted);
-    width: 100%;
-    transition: all 0.2s ease;
-}
-
-.login-btn-ghost:hover {
-    color: var(--text);
-    border-color: rgba(255, 255, 255, 0.35);
-}
-
-/* Mensagem de erro */
-.login-error {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.78rem;
-    color: var(--danger);
-    min-height: 18px;
-    text-align: center;
-}
-
-/* ── NAV ACTIONS (upload + logout) ── */
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: 12px;
-}
-
-.nav-settings-btn {
-    font-size: 1.2rem;
-    padding: 6px 10px;
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 6px;
-    color: var(--accent);
-    background: rgba(0, 212, 255, 0.06);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    line-height: 1;
-}
-
-.nav-settings-btn:hover {
-    background: rgba(0, 212, 255, 0.15);
-}
-
-.nav-logout-btn {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 7px 14px;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: 6px;
-    color: var(--danger);
-    background: rgba(239, 68, 68, 0.07);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.nav-logout-btn:hover {
-    background: rgba(239, 68, 68, 0.15);
-}
-
-/* Esconde upload se não logado */
-.nav-actions.hidden {
-    display: none;
-}
-
-@media (max-width: 700px) {
-    .login-card {
-        max-width: calc(100vw - 32px);
-        padding: 28px 20px;
+    0%,
+    100% {
+        filter: brightness(1);
     }
 
-    .nav-actions {
+    50% {
+        filter: brightness(1.1) saturate(1.2) hue-rotate(-10deg);
+    }
+}
+
+/* Finish overlay */
+.finish-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+}
+
+.finish-overlay.active {
+    opacity: 1;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+    .nav-tabs {
         display: none;
+        flex-direction: column;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: rgba(10, 14, 26, 0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        gap: 4px;
+        z-index: 99;
+    }
+
+    .nav-tabs.open {
+        display: flex;
+    }
+
+    .tab-btn {
+        text-align: center;
+    }
+
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .config-card {
+        min-width: unset;
+        width: calc(100vw - 32px);
+        padding: 20px 16px;
+    }
+
+    .time-inputs {
+        gap: 4px;
+    }
+
+    .time-input-group select {
+        width: 64px;
+        font-size: 1.2rem;
+    }
+
+    .timer-panel {
+        align-items: center;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .time-input-group select {
+        width: 54px;
+        font-size: 1rem;
+        padding: 6px 6px;
     }
 }

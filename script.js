@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════
 //  STATE
 // ═══════════════════════════════════════
-let currentMode   = 'aula';       // aula | atividade | intervalo | almoco
-let timerMode     = 'cronometro'; // cronometro | horario
+let currentMode   = 'aula';
+let timerMode     = 'cronometro';
 let timerInterval = null;
 let totalSeconds  = 0;
 let running       = false;
@@ -14,15 +14,8 @@ const MODE_LABELS = {
   almoco:    'PAUSA ALMOÇO',
 };
 
-const BG_MAP = {
-  aula: 'aula.png',
-};
-
-// Imagens em loop para atividade, intervalo e almoço
 const SLIDESHOW_IMAGES = [
-  'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
-  'https://timer-backend.carreira.group/v1/files/5e2d2f34-febe-4d1b-b1b6-9631a614e1d7.jpeg',
-  'https://timer-backend.carreira.group/v1/files/38015519-2380-4ebf-8027-1b11ee138091.jpeg',
+  'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg'
 ];
 
 let slideshowIndex    = 0;
@@ -46,9 +39,8 @@ function stopSlideshow() {
 }
 
 function applySlideshowBg() {
-  const bg  = document.getElementById('sceneBg');
-  const url = SLIDESHOW_IMAGES[slideshowIndex];
-  bg.style.backgroundImage = `url('${url}')`;
+  const bg = document.getElementById('sceneBg');
+  bg.style.backgroundImage = `url('${SLIDESHOW_IMAGES[slideshowIndex]}')`;
 }
 
 // ═══════════════════════════════════════
@@ -79,12 +71,10 @@ function setMode(mode) {
   currentMode = mode;
   finished    = false;
 
-  // nav highlight
   document.querySelectorAll('.tab-btn').forEach(b =>
     b.classList.toggle('active', b.dataset.mode === mode)
   );
 
-  // background e panel
   const bg    = document.getElementById('sceneBg');
   const panel = document.getElementById('timerPanel');
   const badge = document.getElementById('aulaBadge');
@@ -94,26 +84,26 @@ function setMode(mode) {
   document.getElementById('finishOverlay').classList.remove('active');
 
   if (mode === 'aula') {
-    // Delega toda a lógica da aba aula ao auth.js
-    applyAulaMode();
-  } else {
-    // Outras abas: sempre slideshow + cronômetro visível
     stopSlideshow();
+    bg.className = 'scene-bg bg-aula';
+    panel.classList.add('hidden');
+    badge.style.display = 'block';
+  } else {
     bg.className = 'scene-bg';
     startSlideshow();
     panel.classList.remove('hidden');
     badge.style.display = 'none';
   }
 
-  // reset clock display
   showConfig(true);
   document.getElementById('clockDigits').classList.remove('alarm-flash');
   document.getElementById('clockDigits').textContent = '00:00:00';
   document.getElementById('startBtn').textContent    = '▶ INICIAR';
   document.getElementById('startBtn').classList.remove('running');
-
-  // close mobile menu
   document.getElementById('navTabs').classList.remove('open');
+
+  // Esconde botão voltar ao trocar de aba
+  document.getElementById('voltarBtn').style.display = 'none';
 }
 
 function toggleMenu() {
@@ -135,6 +125,7 @@ function selectTimerMode(mode) {
 function showConfig(show) {
   document.getElementById('configCard').style.display   = show ? 'flex' : 'none';
   document.getElementById('clockDisplay').style.display = show ? 'none' : 'block';
+  document.getElementById('voltarBtn').style.display    = show ? 'none' : 'block';
   if (show) {
     document.getElementById('chamadaBtn').classList.remove('visible');
     document.getElementById('chamadaOverlay').classList.remove('active');
@@ -152,12 +143,11 @@ function calcSeconds() {
   if (timerMode === 'cronometro') {
     return h * 3600 + m * 60 + s;
   } else {
-    // Horário Final: diff from now to target time today (or tomorrow)
     const now    = new Date();
     const target = new Date();
     target.setHours(h, m, s, 0);
     let diff = Math.floor((target - now) / 1000);
-    if (diff <= 0) diff += 86400; // next day
+    if (diff <= 0) diff += 86400;
     return diff;
   }
 }
@@ -203,7 +193,6 @@ function startTimer() {
   const modeLabel = MODE_LABELS[currentMode] || currentMode.toUpperCase();
   document.getElementById('clockLabel').textContent = modeLabel;
 
-  // Botão chamada: só no intervalo
   const chamadaBtn = document.getElementById('chamadaBtn');
   if (currentMode === 'intervalo') {
     chamadaBtn.classList.add('visible');
@@ -241,9 +230,9 @@ function stopTimer() {
 }
 
 function updateClock() {
-  const safe = Math.max(0, totalSeconds);
+  const safe      = Math.max(0, totalSeconds);
   const formatted = formatTime(safe);
-  document.getElementById('clockDigits').textContent    = formatted;
+  document.getElementById('clockDigits').textContent      = formatted;
   document.getElementById('chamadaMiniTimer').textContent = formatted;
 }
 
@@ -262,12 +251,9 @@ function timerFinished() {
   document.getElementById('startBtn').textContent = '▶ REINICIAR';
   document.getElementById('startBtn').classList.remove('running');
 
-  // Play alarm
   const audio = document.getElementById('alarmeAudio');
   audio.currentTime = 0;
-  audio.play().catch(() => {
-    playBeep();
-  });
+  audio.play().catch(() => playBeep());
 }
 
 // ═══════════════════════════════════════
@@ -286,7 +272,7 @@ function fecharChamada() {
 // ═══════════════════════════════════════
 function playBeep() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx         = new (window.AudioContext || window.webkitAudioContext)();
     const beepPattern = [0, 0.3, 0.6, 0.9, 1.2];
     beepPattern.forEach(t => {
       const osc  = ctx.createOscillator();
