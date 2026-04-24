@@ -327,7 +327,7 @@ nav {
 
 .clock-digits {
     font-family: 'Press Start 2P', monospace;
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    font-size: clamp(2rem, 3.0vw, 3.5rem);
     font-weight: 400;
     color: #ffffff;
     line-height: 1;
