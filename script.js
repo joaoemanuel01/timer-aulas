@@ -15,7 +15,8 @@ const MODE_LABELS = {
 };
 
 const SLIDESHOW_IMAGES = [
-  'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg'
+  'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
+  'https://i.postimg.cc/kMVnh847/duvidas-(1).jpg'
 ];
 
 let slideshowIndex    = 0;
