@@ -68,7 +68,7 @@ nav {
 
 .tab-btn {
     font-family: 'Exo 2', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -379,7 +379,7 @@ nav {
 
 .clock-digits {
     font-family: 'Press Start 2P', monospace;
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    font-size: clamp(2rem, 4.0vw, 3.5rem);
     font-weight: 400;
     color: #ffffff;
     line-height: 1;
@@ -524,7 +524,7 @@ nav {
 /* ── BOTÃO CHAMADA ── */
 .chamada-btn {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
