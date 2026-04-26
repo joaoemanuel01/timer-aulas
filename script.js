@@ -14,9 +14,47 @@ const MODE_LABELS = {
   almoco:    'PAUSA ALMOÇO',
 };
 
+// ═══════════════════════════════════════
+//  VÍDEO AULA + WIPE LOOP
+// ═══════════════════════════════════════
+function initAulaVideo() {
+  const video = document.getElementById('aulaVideo');
+  if (!video) return;
+  video.addEventListener('ended', () => {
+    triggerWipe(() => {
+      video.currentTime = 0;
+      video.play();
+    });
+  });
+}
+
+function triggerWipe(callback) {
+  const overlay = document.getElementById('wipeOverlay');
+  overlay.classList.remove('animate');
+  void overlay.offsetWidth; // força reflow para reiniciar animação
+  overlay.classList.add('animate');
+  setTimeout(callback, 660);          // restart no meio (tela coberta)
+  setTimeout(() => overlay.classList.remove('animate'), 1300);
+}
+
+function showAulaVideo() {
+  const video = document.getElementById('aulaVideo');
+  if (!video) return;
+  video.style.display = 'block';
+  video.currentTime = 0;
+  video.play();
+}
+
+function hideAulaVideo() {
+  const video = document.getElementById('aulaVideo');
+  if (!video) return;
+  video.pause();
+  video.style.display = 'none';
+}
+
 const SLIDESHOW_IMAGES = [
   'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
-  'https://i.postimg.cc/kMVnh847/duvidas-(1).jpg'
+  'https://i.postimg.cc/fyJ9CGDS/atendimento.png'
 ];
 
 let slideshowIndex    = 0;
@@ -86,10 +124,14 @@ function setMode(mode) {
 
   if (mode === 'aula') {
     stopSlideshow();
+    hideAulaVideo();
     bg.className = 'scene-bg bg-aula';
+    bg.style.backgroundImage = '';
+    showAulaVideo();
     panel.classList.add('hidden');
     badge.style.display = 'block';
   } else {
+    hideAulaVideo();
     bg.className = 'scene-bg';
     startSlideshow();
     panel.classList.remove('hidden');
@@ -293,4 +335,5 @@ function playBeep() {
 // ═══════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════
+initAulaVideo();
 setMode('aula');

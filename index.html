@@ -1,105 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer Pro</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
-    <link rel="shortcut icon" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&family=Press+Start+2P&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer Pro</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+  <link rel="shortcut icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="nav-brand">TIMER<span>PRO</span></div>
-        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-        <div class="nav-tabs" id="navTabs">
-            <button class="tab-btn active" data-mode="aula" onclick="setMode('aula')">Início da Aula</button>
-            <button class="tab-btn" data-mode="atividade" onclick="setMode('atividade')">Atividade em Salas</button>
-            <button class="tab-btn" data-mode="intervalo" onclick="setMode('intervalo')">Intervalo</button>
-            <button class="tab-btn" data-mode="almoco" onclick="setMode('almoco')">Pausa Almoço</button>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">TIMER<span>PRO</span></div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" data-mode="aula"      onclick="setMode('aula')">Início da Aula</button>
+    <button class="tab-btn"        data-mode="atividade" onclick="setMode('atividade')">Atividade em Salas</button>
+    <button class="tab-btn"        data-mode="intervalo" onclick="setMode('intervalo')">Intervalo</button>
+    <button class="tab-btn"        data-mode="almoco"    onclick="setMode('almoco')">Pausa Almoço</button>
+  </div>
+</nav>
+
+<!-- SCENE -->
+<div class="scene">
+
+  <div class="scene-bg bg-aula" id="sceneBg">
+    <video id="aulaVideo" muted playsinline>
+      <source src="aula.mp4" type="video/mp4">
+    </video>
+    <!-- Wipe diagonal overlay para transição no loop -->
+    <div class="wipe-overlay" id="wipeOverlay"></div>
+  </div>
+  <div class="scene-overlay"></div>
+  <div class="finish-overlay" id="finishOverlay"></div>
+
+  <!-- Chamada Liberada Overlay -->
+  <div class="chamada-overlay" id="chamadaOverlay">
+    <div class="chamada-text">Chamada<br>Liberada</div>
+    <div class="chamada-mini-timer" id="chamadaMiniTimer">00:00:00</div>
+    <button class="chamada-fechar" onclick="fecharChamada()">✕ Fechar</button>
+  </div>
+
+  <!-- Timer panel -->
+  <div class="timer-panel hidden" id="timerPanel">
+
+    <div class="config-card" id="configCard">
+      <div class="config-title">Configurar Temporizador</div>
+
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="modeCron" onclick="selectTimerMode('cronometro')">⏱ Cronômetro</button>
+        <button class="mode-btn"        id="modeHora" onclick="selectTimerMode('horario')">🕐 Horário Final</button>
+      </div>
+
+      <div class="time-inputs">
+        <div class="time-input-group">
+          <label>Hora</label>
+          <select id="selH"></select>
         </div>
-    </nav>
-
-    <!-- SCENE -->
-    <div class="scene">
-
-        <div class="scene-bg bg-aula" id="sceneBg"></div>
-        <div class="scene-overlay"></div>
-        <div class="finish-overlay" id="finishOverlay"></div>
-
-        <!-- Chamada Liberada Overlay -->
-        <div class="chamada-overlay" id="chamadaOverlay">
-            <div class="chamada-text">Chamada<br>Liberada</div>
-            <div class="chamada-mini-timer" id="chamadaMiniTimer">00:00:00</div>
-            <button class="chamada-fechar" onclick="fecharChamada()">✕ Fechar</button>
+        <div class="time-sep">:</div>
+        <div class="time-input-group">
+          <label>Min</label>
+          <select id="selM"></select>
         </div>
-
-        <!-- Timer panel -->
-        <div class="timer-panel hidden" id="timerPanel">
-
-            <div class="config-card" id="configCard">
-                <div class="config-title">Configurar Temporizador</div>
-
-                <div class="mode-toggle">
-                    <button class="mode-btn active" id="modeCron" onclick="selectTimerMode('cronometro')">⏱
-                        Cronômetro</button>
-                    <button class="mode-btn" id="modeHora" onclick="selectTimerMode('horario')">🕐 Horário
-                        Final</button>
-                </div>
-
-                <div class="time-inputs">
-                    <div class="time-input-group">
-                        <label>Hora</label>
-                        <select id="selH"></select>
-                    </div>
-                    <div class="time-sep">:</div>
-                    <div class="time-input-group">
-                        <label>Min</label>
-                        <select id="selM"></select>
-                    </div>
-                    <div class="time-sep">:</div>
-                    <div class="time-input-group">
-                        <label>Seg</label>
-                        <select id="selS"></select>
-                    </div>
-                </div>
-
-                <button class="start-btn" id="startBtn" onclick="toggleTimer()">▶ INICIAR</button>
-            </div>
-
-            <!-- Clock -->
-            <div class="clock-display" id="clockDisplay" style="display:none">
-                <div class="clock-ring">
-                    <div class="clock-digits" id="clockDigits">00:00:00</div>
-                </div>
-                <div class="clock-label" id="clockLabel">CONTAGEM REGRESSIVA</div>
-                <button class="chamada-btn" id="chamadaBtn" onclick="ativarChamada()">🔔 CHAMADA</button>
-            </div>
-
+        <div class="time-sep">:</div>
+        <div class="time-input-group">
+          <label>Seg</label>
+          <select id="selS"></select>
         </div>
+      </div>
 
-
+      <button class="start-btn" id="startBtn" onclick="toggleTimer()">▶ INICIAR</button>
     </div>
 
-    <!-- Botão Voltar fixo no rodapé -->
-    <button class="voltar-btn" id="voltarBtn" onclick="stopTimer()">✕ Voltar</button>
+    <!-- Clock -->
+    <div class="clock-display" id="clockDisplay" style="display:none">
+      <div class="clock-ring">
+        <div class="clock-digits" id="clockDigits">00:00:00</div>
+      </div>
+      <div class="clock-label" id="clockLabel">CONTAGEM REGRESSIVA</div>
+      <button class="chamada-btn" id="chamadaBtn" onclick="ativarChamada()">🔔 CHAMADA</button>
+    </div>
 
-    <!-- Audio -->
-    <audio id="alarmeAudio" preload="auto">
-        <source src="alarme.mp3" type="audio/mpeg">
-    </audio>
+  </div>
 
-    <script src="script.js"></script>
+
+</div>
+
+<!-- Botão Voltar fixo no rodapé -->
+<button class="voltar-btn" id="voltarBtn" onclick="stopTimer()">✕ Voltar</button>
+
+<!-- Audio -->
+<audio id="alarmeAudio" preload="auto">
+  <source src="alarme.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
 </body>
-
 </html>
