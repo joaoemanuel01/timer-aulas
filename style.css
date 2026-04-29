@@ -735,3 +735,31 @@ nav {
         padding: 6px 6px;
     }
 }
+
+/* Ajustes para Notebooks e telas médias */
+@media (max-width: 1400px),
+(max-height: 800px) {
+    .clock-digits {
+        /* Diminuímos o tamanho máximo do clamp */
+        font-size: clamp(1.5rem, 4vw, 3rem);
+        letter-spacing: 5px;
+        /* Reduz o espaçamento entre números */
+    }
+
+    .clock-label {
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+
+    .config-card {
+        min-width: 350px;
+        /* Reduz o painel de configuração */
+        padding: 20px;
+    }
+
+    .timer-panel {
+        gap: 15px;
+        /* Diminui o espaço entre o config e o relógio */
+        padding-top: 8vh;
+    }
+}
