@@ -21,11 +21,27 @@ function initAulaVideo() {
   const video = document.getElementById('aulaVideo');
   if (!video) return;
   video.addEventListener('ended', () => {
+  if (IS_SEXTA) {
+    hideAulaVideo();
+    // Fade in sexta.jpg
+    const bg = document.getElementById('sceneBg');
+    bg.style.transition = 'background-image 0s';
+    bg.style.backgroundImage = "url('https://i.postimg.cc/1t4pn1vc/sexta.jpg')";
+
+    // Após 10s dispara wipe e volta pro vídeo
+    setTimeout(() => {
+      triggerWipe(() => {
+        bg.style.backgroundImage = '';
+        showAulaVideo();
+      });
+    }, 10000);
+  } else {
     triggerWipe(() => {
       video.currentTime = 0;
       video.play();
     });
-  });
+  }
+});
 }
 
 function triggerWipe(callback) {
@@ -52,7 +68,12 @@ function hideAulaVideo() {
   video.style.display = 'none';
 }
 
+const IS_SEXTA = new Date().getDay() === 5;
+
 const SLIDESHOW_IMAGES = [
+  ...(IS_SEXTA ? ['https://i.postimg.cc/1t4pn1vc/sexta.jpg'] : []),
+  'https://timer-backend.carreira.group/v1/files/8ee42381-543c-4f45-a077-528e9c798ffe.jpeg',
+  'https://timer-backend.carreira.group/v1/files/81ad5d20-b1ed-4069-9b7f-cda7222ea337.jpeg',
   'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
   'https://i.postimg.cc/fyJ9CGDS/atendimento.png'
 ];
@@ -116,7 +137,6 @@ function setMode(mode) {
 
   const bg    = document.getElementById('sceneBg');
   const panel = document.getElementById('timerPanel');
-  const badge = document.getElementById('aulaBadge');
 
   bg.classList.remove('pulse-on-end');
   bg.style.backgroundImage = '';
@@ -128,14 +148,13 @@ function setMode(mode) {
     bg.className = 'scene-bg bg-aula';
     bg.style.backgroundImage = '';
     showAulaVideo();
+    document.getElementById('sceneBg').style.backgroundImage = '';
     panel.classList.add('hidden');
-    badge.style.display = 'block';
   } else {
     hideAulaVideo();
     bg.className = 'scene-bg';
     startSlideshow();
     panel.classList.remove('hidden');
-    badge.style.display = 'none';
   }
 
   showConfig(true);
