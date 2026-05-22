@@ -71,7 +71,7 @@ function hideAulaVideo() {
 const IS_SEXTA = new Date().getDay() === 5;
 
 const SLIDESHOW_IMAGES = [
-  ...(IS_SEXTA ? ['https://i.postimg.cc/1t4pn1vc/sexta.jpg'] : []),
+  ...(IS_SEXTA ? ['https://i.postimg.cc/hv7CQgNP/sexta.jpg'] : []),
   'https://timer-backend.carreira.group/v1/files/8ee42381-543c-4f45-a077-528e9c798ffe.jpeg',
   'https://timer-backend.carreira.group/v1/files/81ad5d20-b1ed-4069-9b7f-cda7222ea337.jpeg',
   'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
