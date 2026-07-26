@@ -72,10 +72,11 @@ const IS_SEXTA = new Date().getDay() === 5;
 
 const SLIDESHOW_IMAGES = [
   ...(IS_SEXTA ? ['https://i.postimg.cc/hv7CQgNP/sexta.jpg'] : []),
+  'https://timer-backend.carreira.group/v1/files/50278f00-a07f-4b3f-b6be-22231303262d.jpeg',
+  'https://timer-backend.carreira.group/v1/files/7bbee1a2-55bf-47dd-acc6-bfb025163a35.jpeg,
   'https://timer-backend.carreira.group/v1/files/3e20387e-7d0e-43d0-bca4-89e43fb69065.jpeg',
   'https://timer-backend.carreira.group/v1/files/8ee42381-543c-4f45-a077-528e9c798ffe.jpeg',
   'https://timer-backend.carreira.group/v1/files/81ad5d20-b1ed-4069-9b7f-cda7222ea337.jpeg',
-  'https://timer-backend.carreira.group/v1/files/771609c0-7c68-48ff-87c9-8e61ebd6900d.jpeg',
   'https://i.postimg.cc/fyJ9CGDS/atendimento.png'
 ];
 
