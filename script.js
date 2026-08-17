@@ -69,6 +69,7 @@ function hideAulaVideo() {
 }
 
 const IS_SEXTA = new Date().getDay() === 5;
+const IS_DOMINGO = new Date().getDay() === 0;
 
 const SLIDESHOW_IMAGES = [
   ...(IS_SEXTA ? ['https://i.postimg.cc/1t4pn1vc/sexta.jpg'] : []),
@@ -143,20 +144,25 @@ function setMode(mode) {
   document.getElementById('finishOverlay').classList.remove('active');
 
   if (mode === 'aula') {
-    stopSlideshow();
-    hideAulaVideo();
-    bg.className = 'scene-bg bg-aula';
-    bg.style.backgroundImage = '';
-    showAulaVideo();
-    document.getElementById('sceneBg').style.backgroundImage = '';
-    panel.classList.add('hidden');
-  } else {
-    hideAulaVideo();
-    bg.className = 'scene-bg';
-    startSlideshow();
-    panel.classList.remove('hidden');
-  }
-
+  stopSlideshow();
+  hideAulaVideo();
+  bg.className = 'scene-bg bg-aula';
+  bg.style.backgroundImage = '';
+  showAulaVideo();
+  document.getElementById('sceneBg').style.backgroundImage = '';
+  panel.classList.add('hidden');
+} else if (mode === 'avaliacao') {
+  hideAulaVideo();
+  stopSlideshow();
+  bg.className = 'scene-bg bg-avaliacao';
+  bg.style.backgroundImage = '';
+  panel.classList.add('hidden');
+} else {
+  hideAulaVideo();
+  bg.className = 'scene-bg';
+  startSlideshow();
+  panel.classList.remove('hidden');
+}
   showConfig(true);
   document.getElementById('clockDigits').classList.remove('alarm-flash');
   document.getElementById('clockDigits').textContent = '00:00:00';
@@ -166,6 +172,7 @@ function setMode(mode) {
 
   // Esconde botão voltar ao trocar de aba
   document.getElementById('voltarBtn').style.display = 'none';
+  
 }
 
 function toggleMenu() {
@@ -355,4 +362,8 @@ function playBeep() {
 //  INIT
 // ═══════════════════════════════════════
 initAulaVideo();
+const tabAvaliacao = document.getElementById('tabAvaliacao');
+if (tabAvaliacao) {
+  tabAvaliacao.style.display = IS_DOMINGO ? 'inline-block' : 'none';
+}
 setMode('aula');
