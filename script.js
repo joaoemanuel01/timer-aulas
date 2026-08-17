@@ -362,12 +362,10 @@ function playBeep() {
 //  INIT
 // ═══════════════════════════════════════
 initAulaVideo();
-<<<<<<< HEAD
 const tabAvaliacao = document.getElementById('tabAvaliacao');
 if (tabAvaliacao) {
   tabAvaliacao.style.display = IS_DOMINGO ? 'inline-block' : 'none';
 }
 setMode('aula');
-=======
 setMode('aula');
->>>>>>> c00ea4baca655ddf2f8a43da16cf02dc6515042b
+
