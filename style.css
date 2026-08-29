@@ -369,7 +369,7 @@ nav {
 /* ── CLOCK DISPLAY ── */
 .clock-display {
     position: relative;
-    text-align: left;
+    text-align: center;
 }
 
 .clock-ring {
@@ -381,7 +381,7 @@ nav {
 .clock-digits {
     font-family: 'Orbitron', monospace;
     font-size: clamp(2rem, 5.0vw, 4rem);
-    font-weight: 400;
+    font-weight: 600;
     color: #ffffff;
     line-height: 1;
     letter-spacing: 10px;
@@ -399,8 +399,7 @@ nav {
         3px -1px 0 #000, -3px -1px 0 #000,
         1px -3px 0 #000, -1px -3px 0 #000;
     transition: color 0.3s ease, text-shadow 0.3s ease;
-    image-rendering: pixelated;
-    font-variant-numeric: tabular-nums;
+    
 }
 
 .clock-digits.alarm-flash {
