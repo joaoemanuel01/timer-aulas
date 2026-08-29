@@ -381,7 +381,7 @@ nav {
 .clock-digits {
     font-family: 'Orbitron', monospace;
     font-size: clamp(2rem, 5.0vw, 4rem);
-    font-weight: 600;
+    font-weight: 900;
     color: #ffffff;
     line-height: 1;
     letter-spacing: 10px;
@@ -421,9 +421,9 @@ nav {
 }
 
 .clock-label {
-    font-family: 'Press Start 2P', monospace;
+    font-family: 'Orbitron', monospace;
     font-size: clamp(1rem, 2.2vw, 1.6rem);
-    font-weight: 400;
+    font-weight: 750;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #ffffff;
