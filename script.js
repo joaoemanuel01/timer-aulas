@@ -20,28 +20,43 @@ const MODE_LABELS = {
 function initAulaVideo() {
   const video = document.getElementById('aulaVideo');
   if (!video) return;
-  video.addEventListener('ended', () => {
-  if (IS_SEXTA) {
-    hideAulaVideo();
-    // Fade in sexta.jpg
-    const bg = document.getElementById('sceneBg');
-    bg.style.transition = 'background-image 0s';
-    bg.style.backgroundImage = "url('https://i.postimg.cc/1t4pn1vc/sexta.jpg')";
 
-    // Após 10s dispara wipe e volta pro vídeo
-    setTimeout(() => {
+  video.addEventListener('ended', () => {
+    const bg = document.getElementById('sceneBg');
+
+    if (IS_SEXTA) {
+      // Cross dissolve: imagem aparece por baixo enquanto vídeo some
+      const targetUrl = "url('https://i.postimg.cc/1t4pn1vc/sexta.jpg')";
+      bg.style.backgroundImage = targetUrl;
+
+      // Fade out do vídeo (cross dissolve)
+      video.style.transition = 'opacity 1.5s ease';
+      video.style.opacity = '0';
+
+      setTimeout(() => {
+        // Vídeo sumiu, imagem já está visível
+        video.style.transition = '';
+        video.style.opacity = '1';
+        video.style.display = 'none';
+        video.pause();
+
+        // Fica 10s na imagem, depois wipe para voltar ao vídeo
+        setTimeout(() => {
+          triggerWipe(() => {
+            bg.style.backgroundImage = '';
+            showAulaVideo();
+          });
+        }, 10000);
+
+      }, 1500); // aguarda o fade completar
+
+    } else {
       triggerWipe(() => {
-        bg.style.backgroundImage = '';
-        showAulaVideo();
+        video.currentTime = 0;
+        video.play();
       });
-    }, 10000);
-  } else {
-    triggerWipe(() => {
-      video.currentTime = 0;
-      video.play();
-    });
-  }
-});
+    }
+  });
 }
 
 function triggerWipe(callback) {
