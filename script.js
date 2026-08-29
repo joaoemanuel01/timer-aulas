@@ -92,7 +92,7 @@ const SLIDESHOW_IMAGES = [
   'https://timer-backend.carreira.group/v1/files/8ee42381-543c-4f45-a077-528e9c798ffe.jpeg',
   'https://timer-backend.carreira.group/v1/files/81ad5d20-b1ed-4069-9b7f-cda7222ea337.jpeg',
   'https://timer-backend.carreira.group/v1/files/201e1b15-0a83-4561-aadd-f3f47cf7147e.jpeg',
-  'https://i.postimg.cc/fyJ9CGDS/atendimento.png'
+  'https://i.postimg.cc/y8FFfmcP/atendimento.png'
 ];
 
 let slideshowIndex    = 0;
