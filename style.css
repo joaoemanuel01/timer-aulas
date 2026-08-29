@@ -380,7 +380,7 @@ nav {
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet');
 .clock-digits {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(3rem, 8.0vw, 8rem);
+    font-size: clamp(4.5rem, 7.5vw, 7.5rem);
     font-weight: 900;
     color: #ffffff;
     line-height: 1;
