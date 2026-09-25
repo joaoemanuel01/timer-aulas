@@ -88,9 +88,11 @@ const IS_DOMINGO = new Date().getDay() === 0;
 
 const SLIDESHOW_IMAGES = [
   ...(IS_SEXTA ? ['https://i.postimg.cc/hv7CQgNP/sexta.jpg'] : []),
-  'https://timer-backend.carreira.group/v1/files/a19bfbfc-50c6-4306-8238-e777f772bd1c.jpeg',
+  'https://timer-backend.carreira.group/v1/files/201e1b15-0a83-4561-aadd-f3f47cf7147e.jpeg',
+  'https://timer-backend.carreira.group/v1/files/18c6a854-dca7-4d67-a11b-bd393e8562aa.jpeg',
+  'https://timer-backend.carreira.group/v1/files/7e70147d-80fa-457f-8c42-8dfc29fdafda.jpeg',
+  'https://timer-backend.carreira.group/v1/files/78adfa78-55dd-4448-a42f-744c4f5ab6a4.jpeg',
   'https://timer-backend.carreira.group/v1/files/8ee42381-543c-4f45-a077-528e9c798ffe.jpeg',
-  'https://timer-backend.carreira.group/v1/files/81ad5d20-b1ed-4069-9b7f-cda7222ea337.jpeg',
   'https://timer-backend.carreira.group/v1/files/201e1b15-0a83-4561-aadd-f3f47cf7147e.jpeg',
   'https://i.postimg.cc/y8FFfmcP/atendimento.png'
 ];
