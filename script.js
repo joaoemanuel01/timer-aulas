@@ -88,7 +88,6 @@ const IS_DOMINGO = new Date().getDay() === 0;
 
 const SLIDESHOW_IMAGES = [
   ...(IS_SEXTA ? ['https://i.postimg.cc/hv7CQgNP/sexta.jpg'] : []),
-  'https://i.postimg.cc/xdQZ7NHd/desconto.png',
   'https://i.postimg.cc/y8FFfmcP/atendimento.png',
   'https://timer-backend.carreira.group/v1/files/7e70147d-80fa-457f-8c42-8dfc29fdafda.jpeg',
   'https://timer-backend.carreira.group/v1/files/78adfa78-55dd-4448-a42f-744c4f5ab6a4.jpeg',
